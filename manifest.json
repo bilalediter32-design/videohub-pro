@@ -24,13 +24,15 @@
       "purpose": "any"
     }
   ],
-  "screenshots": [
-    {
-      "src": "./screenshot-home.png",
-      "sizes": "ACTUAL_WIDTHxACTUAL_HEIGHT",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "VideoHub Pro home screen"
-    }
+  "
   ]
     }
+"screenshots": [
+  {
+    "src": "./screenshot-home.png",
+    "sizes": "1080x2460",
+    "type": "image/png",
+    "form_factor": "narrow",
+    "label": "VideoHub Pro home screen"
+  }
+]
