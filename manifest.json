@@ -1,25 +1,36 @@
-
 {
   "id": "./",
   "name": "VideoHub Pro",
   "short_name": "VideoHub",
-  "description": "Personal video library and media player",
+  "description": "Your personal video library and media player.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#10111b",
   "theme_color": "#10111b",
+  "categories": ["video", "entertainment", "utilities"],
   "icons": [
     {
       "src": "./icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "./icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./screenshot-home.png",
+      "sizes": "ACTUAL_WIDTHxACTUAL_HEIGHT",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "VideoHub Pro home screen"
     }
   ]
-}
+    }
