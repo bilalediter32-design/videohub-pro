@@ -1,3 +1,4 @@
+
 {
   "id": "./",
   "name": "VideoHub Pro",
@@ -9,7 +10,11 @@
   "orientation": "portrait",
   "background_color": "#10111b",
   "theme_color": "#10111b",
-  "categories": ["video", "entertainment", "utilities"],
+  "categories": [
+    "video",
+    "entertainment",
+    "utilities"
+  ],
   "icons": [
     {
       "src": "./icon-192.png",
@@ -24,15 +29,13 @@
       "purpose": "any"
     }
   ],
-  "
-  ]
+  "screenshots": [
+    {
+      "src": "./screenshot-home.png",
+      "sizes": "1080x2460",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "VideoHub Pro home screen"
     }
-"screenshots": [
-  {
-    "src": "./screenshot-home.png",
-    "sizes": "1080x2460",
-    "type": "image/png",
-    "form_factor": "narrow",
-    "label": "VideoHub Pro home screen"
-  }
-]
+  ]
+}
