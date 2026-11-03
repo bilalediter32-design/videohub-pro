@@ -221,6 +221,25 @@ function toggleTheme(){
  localStorage.setItem("vh-theme",document.body.classList.contains("light")?"light":"dark");
 }
 if(localStorage.getItem("vh-theme")==="light")document.body.classList.add("light");
+</script><style>
+/* Design CSS */
+</style>
+</head>
+
+<body>
+<!-- App ka content -->
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => console.log("Service Worker registered"))
+      .catch(error => console.error(error));
+  });
+}
 </script>
+
+</body>
+</html>
 </body>
 </html>
