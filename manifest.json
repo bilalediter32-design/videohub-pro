@@ -31,8 +31,11 @@
   ],
   "screenshots": [
     {
-"src": "./screenshot-home.jpg",
-"sizes": "1080x2460",
-"type": "image/jpeg",
-"form_factor": "narrow",
-"label": "VideoHub Pro home screen"
+      "src": "./screenshot-home.jpg",
+      "sizes": "1080x2460",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "VideoHub Pro home screen"
+    }
+  ]
+}
