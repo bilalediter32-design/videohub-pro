@@ -1,102 +1,226 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#090d18">
-<meta name="description" content="VideoHub Pro — organize and play your own videos, with authorized platform link guidance.">
-<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10111b">
 <title>VideoHub Pro</title>
 <style>
-:root{color-scheme:dark;--bg:#090d18;--panel:#111a2b;--panel2:#172238;--line:#293750;--text:#f4f7ff;--muted:#9eacc4;--a:#7c9cff;--b:#37d6bb;--danger:#ff7a86}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#172440 0,#090d18 55%);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
-header{padding:20px 16px 12px;max-width:1050px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{display:flex;align-items:center;gap:11px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;color:#08101d;font-size:22px;font-weight:900}
-h1{font-size:20px;margin:0;letter-spacing:.2px}.tag{font-size:12px;color:var(--muted);margin-top:3px}
-select,input,button{font:inherit}select,input{background:#0c1424;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:11px;min-width:0}
-main{max-width:1050px;margin:auto;padding:8px 16px 36px}.hero{background:linear-gradient(125deg,#1b2c4d,#142a37);border:1px solid #344766;border-radius:22px;padding:20px;margin:8px 0 16px}
-.hero h2{font-size:22px;margin:0 0 7px}.hero p{color:#c3d0e5;margin:0;line-height:1.55}
-.tabs{display:flex;gap:8px;overflow:auto;padding:3px 0 14px}.tab{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:10px 14px;border-radius:999px}.tab.active{background:#263d66;color:white;border-color:#5875b4}
-.panel{background:rgba(17,26,43,.94);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px}
-h3{font-size:16px;margin:0 0 12px}.row{display:flex;gap:9px;flex-wrap:wrap}.row>*{flex:1}
-button{border:0;border-radius:12px;padding:11px 14px;background:linear-gradient(120deg,var(--a),#8aafff);color:#091326;font-weight:750;cursor:pointer}
-button.secondary{background:#22314b;color:#eaf0ff;border:1px solid #3a4c69}button:disabled{opacity:.45}
-.small{font-size:12px;color:var(--muted);line-height:1.5}.notice{padding:12px;border-radius:12px;background:#1b2a40;border:1px solid #354c6b;color:#dce8fa;margin-top:12px;line-height:1.5}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}.video{background:#0d1525;border:1px solid var(--line);border-radius:15px;overflow:hidden}.video video{width:100%;aspect-ratio:16/9;background:#05080e;display:block}.video-info{padding:11px}.video-title{font-weight:700;overflow-wrap:anywhere}.video-meta{font-size:12px;color:var(--muted);margin:5px 0 10px}.video-actions{display:flex;gap:7px}.video-actions button{padding:8px;font-size:12px;flex:1}
-.empty{text-align:center;padding:26px;color:var(--muted);border:1px dashed #3a4b65;border-radius:14px}
-.hidden{display:none!important}.pill{display:inline-block;background:#243652;border-radius:99px;padding:4px 8px;font-size:11px;color:#c9dcff;margin:4px 4px 0 0}
-footer{max-width:1050px;margin:auto;padding:0 16px 28px;color:var(--muted);font-size:12px}
-@media(max-width:520px){header{align-items:flex-start}.hero h2{font-size:19px}.row.stack>*{flex-basis:100%}}
+:root{--bg:#10111b;--panel:#1b1d2b;--text:#fff;--muted:#a5a8bd;--accent:#7657ff;--line:#303247}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+header{padding:20px 16px;background:#171827;position:sticky;top:0;z-index:5;border-bottom:1px solid var(--line)}
+.top{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:23px;font-weight:800}.logo span{color:#967dff}
+button{border:0;border-radius:12px;padding:12px 16px;background:var(--accent);color:white;font-weight:bold;cursor:pointer}
+.theme{background:var(--panel)}
+main{max-width:850px;margin:auto;padding:18px 15px 100px}
+h2{font-size:20px;margin:25px 0 12px}
+.search{width:100%;padding:15px;border:1px solid var(--line);border-radius:13px;background:var(--panel);color:white;font-size:16px}
+.hero{margin-top:20px;padding:24px;border-radius:20px;background:linear-gradient(130deg,#5634d9,#a13ed0)}
+.hero h2{font-size:25px;margin:0 0 8px}.hero p{color:#eee;line-height:1.5}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.actions button{background:#fff;color:#35216e}
+.chips{display:flex;gap:9px;overflow:auto;padding-bottom:5px}
+.chip{white-space:nowrap;background:var(--panel);border:1px solid var(--line);color:var(--text)}
+.chip.active{background:var(--accent)}
+.panel{background:var(--panel);border:1px solid var(--line);padding:16px;border-radius:16px;margin-top:14px}
+input[type=file]{display:none}
+input[type=text]{width:100%}
+.video{padding:13px;background:var(--panel);border:1px solid var(--line);border-radius:15px;margin:12px 0}
+video{width:100%;border-radius:10px;background:#000;max-height:350px}
+.video h3{font-size:15px;overflow-wrap:anywhere}
+.video-actions{display:flex;gap:8px;flex-wrap:wrap}
+.small{font-size:12px;color:var(--muted);line-height:1.5}
+.secondary{background:#303247}
+.danger{background:#9b3549}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
+.light{--bg:#f2f3fa;--panel:#fff;--text:#171827;--muted:#666b80;--line:#dddfea}
+.light .search{color:#171827}
+#empty{text-align:center;padding:35px 10px;color:var(--muted)}
 </style>
 </head>
 <body>
 <header>
- <div class="brand"><div class="logo">▶</div><div><h1>VideoHub Pro</h1><div class="tag" id="tagline">Your personal video library</div></div></div>
- <select id="language" aria-label="Language">
-  <option value="en">English</option><option value="ur">اردو</option><option value="ar">العربية</option><option value="es">Español</option><option value="fr">Français</option><option value="hi">हिन्दी</option><option value="zh">简体中文</option><option value="pt">Português</option><option value="bn">বাংলা</option><option value="de">Deutsch</option><option value="tr">Türkçe</option>
- </select>
+ <div class="top">
+  <div class="logo">▶ VideoHub <span>PRO</span></div>
+  <button class="theme" onclick="toggleTheme()">☀ / ☾</button>
+ </div>
 </header>
+
 <main>
- <section class="hero"><h2 id="heroTitle">All your videos, in one place.</h2><p id="heroText">Organize and play videos stored on your device. Check platform links and follow official download or export options when you have permission.</p></section>
- <nav class="tabs">
-  <button class="tab active" data-tab="library" id="tabLibrary">My Library</button>
-  <button class="tab" data-tab="add" id="tabAdd">Add videos</button>
-  <button class="tab" data-tab="links" id="tabLinks">Link checker</button>
-  <button class="tab" data-tab="about" id="tabAbout">About</button>
- </nav>
- <section id="library" class="panel">
-  <div class="row" style="align-items:center;margin-bottom:12px"><h3 id="libraryTitle" style="margin:0;flex:2">My videos</h3><input id="search" placeholder="Search videos…" aria-label="Search videos"></div>
-  <div id="videoGrid" class="grid"><div class="empty" id="empty">No videos yet. Add a video from your device.</div></div>
+ <input class="search" id="search" placeholder="Search your videos..." oninput="render()">
+
+ <section class="hero">
+  <h2>Your Video World</h2>
+  <p>Save, organize and watch your personal video collection in one place.</p>
+  <div class="actions">
+   <button onclick="document.getElementById('picker').click()">＋ Add Video</button>
+   <button onclick="document.getElementById('link').focus()">Check Video Link</button>
+  </div>
  </section>
- <section id="add" class="panel hidden">
-  <h3 id="addTitle">Add videos from your device</h3>
-  <input id="fileInput" type="file" accept="video/*" multiple style="width:100%">
-  <p class="small" id="addHelp">Your selected videos are saved in this browser on this device. Large files need enough free storage. Do not clear browser data if you want to keep this library.</p>
-  <div class="notice" id="storageNotice">Tip: keep a separate backup of important original videos.</div>
- </section>
- <section id="links" class="panel hidden">
-  <h3 id="linksTitle">Platform link checker</h3>
-  <input id="urlInput" type="url" placeholder="Paste a public video URL" style="width:100%">
-  <div class="row" style="margin-top:10px"><button id="checkBtn">Check link</button><button class="secondary" id="clearBtn">Clear</button></div>
-  <div id="linkResult" class="notice hidden" aria-live="polite"></div>
-  <p class="small" id="linkHelp">Recognizing a link does not mean downloading is allowed. Use the platform's official download/export option, or download only when you own the content or have permission.</p>
- </section>
- <section id="about" class="panel hidden">
-  <h3 id="aboutTitle">About VideoHub Pro</h3>
-  <p id="aboutText">This is an installable, offline-capable personal video library. It stores selected local video files in this browser and plays them on this device.</p>
-  <div><span class="pill">Local library</span><span class="pill">Offline shell</span><span class="pill">11 languages</span><span class="pill">Authorized use</span></div>
-  <div class="notice" id="legal">This app does not download videos from social platforms, bypass logins, DRM, paywalls, privacy settings, or platform restrictions. Respect copyright and each platform's terms.</div>
-  <p class="small">Version 1.0 • Website/PWA starter • Not a native APK or a hosted public website yet.</p>
- </section>
+
+ <input type="file" id="picker" accept="video/*" multiple onchange="addVideos(event)">
+
+ <h2>Explore</h2>
+ <div class="chips">
+  <button class="chip active" onclick="category('All',this)">All</button>
+  <button class="chip" onclick="category('Favorites',this)">♥ Favorites</button>
+  <button class="chip" onclick="category('Recent',this)">Recent</button>
+ </div>
+
+ <h2>Video Link Checker</h2>
+ <div class="panel">
+  <input class="search" id="link" placeholder="Paste a video page or direct video link">
+  <div class="actions">
+   <button onclick="checkLink()">Check Link</button>
+   <button class="secondary" onclick="document.getElementById('link').value=''">Clear</button>
+  </div>
+  <p class="small" id="linkResult">Recognizes common video platforms. This does not download videos from social platforms.</p>
+ </div>
+
+ <div class="top">
+  <h2>My Library</h2>
+  <span class="small" id="count">0 videos</span>
+ </div>
+ <div id="library"></div>
+ <footer>VideoHub Pro · Personal Video Library<br>Only save videos you own or have permission to download.</footer>
 </main>
-<footer>VideoHub Pro • Keep backups of important files. Browser storage can be removed by device or browser cleanup.</footer>
+
 <script>
-const $=id=>document.getElementById(id);
-const translations={
-en:{tag:"Your personal video library",hero:"All your videos, in one place.",heroText:"Organize and play videos stored on your device. Check platform links and follow official download or export options when you have permission.",library:"My Library",add:"Add videos",links:"Link checker",about:"About",videos:"My videos",search:"Search videos…",empty:"No videos yet. Add a video from your device.",addTitle:"Add videos from your device",addHelp:"Your selected videos are saved in this browser on this device. Large files need enough free storage. Do not clear browser data if you want to keep this library.",tip:"Tip: keep a separate backup of important original videos.",linkTitle:"Platform link checker",check:"Check link",clear:"Clear",linkHelp:"Recognizing a link does not mean downloading is allowed. Use the platform's official download/export option, or download only when you own the content or have permission.",aboutTitle:"About VideoHub Pro",aboutText:"This is an installable, offline-capable personal video library. It stores selected local video files in this browser and plays them on this device.",legal:"This app does not download videos from social platforms, bypass logins, DRM, paywalls, privacy settings, or platform restrictions. Respect copyright and each platform's terms.",saved:"Saved to your library.",bad:"Please enter a valid video link.",recognized:"Recognized platform: ",official:"Use the platform's official download/export feature if available and permitted. Otherwise, ask the owner for permission.",open:"Open platform",copy:"Copy link",remove:"Remove",favorite:"Favorite",unfavorite:"Unfavorite",unknown:"Platform not recognized. Check the URL."},
-ur:{tag:"آپ کی ذاتی ویڈیو لائبریری",hero:"آپ کی تمام ویڈیوز، ایک جگہ۔",heroText:"اپنے موبائل میں موجود ویڈیوز منظم کریں اور چلائیں۔ پلیٹ فارم لنکس چیک کریں اور اجازت ہونے پر آفیشل ڈاؤن لوڈ یا ایکسپورٹ استعمال کریں۔",library:"میری لائبریری",add:"ویڈیوز شامل کریں",links:"لنک چیک کریں",about:"تعارف",videos:"میری ویڈیوز",search:"ویڈیو تلاش کریں…",empty:"ابھی کوئی ویڈیو نہیں۔ اپنے موبائل سے ویڈیو شامل کریں۔",addTitle:"اپنے موبائل سے ویڈیوز شامل کریں",addHelp:"منتخب ویڈیوز اسی موبائل کے اسی براؤزر میں محفوظ ہوں گی۔ اہم ویڈیوز کا بیک اپ ضرور رکھیں۔",tip:"مشورہ: اصل ویڈیوز کی الگ کاپی محفوظ رکھیں۔",linkTitle:"سوشل پلیٹ فارم لنک چیکر",check:"لنک چیک کریں",clear:"صاف کریں",linkHelp:"لنک پہچاننے کا مطلب ڈاؤن لوڈ کی اجازت نہیں۔ صرف آفیشل آپشن یا اپنی/اجازت والی ویڈیو استعمال کریں۔",aboutTitle:"VideoHub Pro کے بارے میں",aboutText:"یہ ذاتی ویڈیو لائبریری ہے جسے موبائل کی ہوم اسکرین پر انسٹال کیا جا سکتا ہے۔",legal:"یہ ایپ سوشل میڈیا سے ویڈیوز ڈاؤن لوڈ نہیں کرتی اور لاگ اِن، DRM، پرائیویسی یا پلیٹ فارم پابندیوں کو بائی پاس نہیں کرتی۔",saved:"آپ کی لائبریری میں محفوظ ہوگئی۔",bad:"درست ویڈیو لنک درج کریں۔",recognized:"پلیٹ فارم پہچان لیا گیا: ",official:"اگر اجازت ہو تو پلیٹ فارم کا آفیشل ڈاؤن لوڈ/ایکسپورٹ آپشن استعمال کریں، ورنہ مالک سے اجازت لیں۔",open:"پلیٹ فارم کھولیں",copy:"لنک کاپی کریں",remove:"حذف کریں",favorite:"پسندیدہ",unfavorite:"پسندیدہ ہٹائیں",unknown:"پلیٹ فارم پہچانا نہیں گیا۔ لنک چیک کریں۔"},
-es:{tag:"Tu biblioteca personal de vídeos",hero:"Todos tus vídeos en un solo lugar.",heroText:"Organiza y reproduce vídeos guardados en tu dispositivo. Usa opciones oficiales cuando tengas permiso.",library:"Mi biblioteca",add:"Añadir vídeos",links:"Comprobar enlace",about:"Acerca de",videos:"Mis vídeos",search:"Buscar vídeos…",empty:"Aún no hay vídeos.",addTitle:"Añadir vídeos del dispositivo",addHelp:"Los vídeos se guardan en este navegador y dispositivo. Haz copias de seguridad.",tip:"Guarda una copia de seguridad de tus vídeos importantes.",linkTitle:"Comprobador de enlaces",check:"Comprobar",clear:"Borrar",linkHelp:"Reconocer un enlace no autoriza la descarga. Usa opciones oficiales y contenido autorizado.",aboutTitle:"Acerca de VideoHub Pro",aboutText:"Biblioteca personal instalable y preparada para uso sin conexión.",legal:"No descarga vídeos de redes sociales ni evita restricciones, DRM o controles de privacidad.",saved:"Guardado.",bad:"Introduce un enlace válido.",recognized:"Plataforma reconocida: ",official:"Usa la descarga o exportación oficial si está permitida.",open:"Abrir plataforma",copy:"Copiar enlace",remove:"Eliminar",favorite:"Favorito",unfavorite:"Quitar favorito",unknown:"Plataforma no reconocida."},
-fr:{tag:"Votre bibliothèque vidéo personnelle",hero:"Toutes vos vidéos au même endroit.",heroText:"Organisez et lisez les vidéos de votre appareil. Utilisez les options officielles avec autorisation.",library:"Ma bibliothèque",add:"Ajouter des vidéos",links:"Vérifier un lien",about:"À propos",videos:"Mes vidéos",search:"Rechercher…",empty:"Aucune vidéo pour le moment.",addTitle:"Ajouter des vidéos de l'appareil",addHelp:"Les vidéos sont enregistrées dans ce navigateur sur cet appareil. Faites des sauvegardes.",tip:"Conservez une sauvegarde de vos vidéos importantes.",linkTitle:"Vérificateur de liens",check:"Vérifier",clear:"Effacer",linkHelp:"Reconnaître un lien n'autorise pas son téléchargement. Utilisez les options officielles et les contenus autorisés.",aboutTitle:"À propos de VideoHub Pro",aboutText:"Bibliothèque personnelle installable et utilisable hors ligne.",legal:"Cette application ne télécharge pas les vidéos des réseaux sociaux et ne contourne aucune restriction.",saved:"Enregistré.",bad:"Saisissez un lien valide.",recognized:"Plateforme reconnue : ",official:"Utilisez l'option officielle si elle est autorisée.",open:"Ouvrir la plateforme",copy:"Copier le lien",remove:"Supprimer",favorite:"Favori",unfavorite:"Retirer des favoris",unknown:"Plateforme non reconnue."},
-hi:{tag:"आपकी निजी वीडियो लाइब्रेरी",hero:"आपके सभी वीडियो, एक जगह।",heroText:"अपने डिवाइस में मौजूद वीडियो व्यवस्थित करें और चलाएँ। अनुमति होने पर आधिकारिक विकल्प इस्तेमाल करें।",library:"मेरी लाइब्रेरी",add:"वीडियो जोड़ें",links:"लिंक जाँचें",about:"जानकारी",videos:"मेरे वीडियो",search:"वीडियो खोजें…",empty:"अभी कोई वीडियो नहीं है।",addTitle:"डिवाइस से वीडियो जोड़ें",addHelp:"वीडियो इसी डिवाइस के ब्राउज़र में सेव होंगे। बैकअप रखें।",tip:"महत्वपूर्ण वीडियो की अलग कॉपी रखें।",linkTitle:"प्लेटफ़ॉर्म लिंक जाँच",check:"जाँचें",clear:"साफ़ करें",linkHelp:"लिंक पहचानने का अर्थ डाउनलोड की अनुमति नहीं है। केवल आधिकारिक और अधिकृत विकल्प उपयोग करें।",aboutTitle:"VideoHub Pro के बारे में",aboutText:"यह इंस्टॉल की जा सकने वाली निजी वीडियो लाइब्रेरी है।",legal:"यह सोशल मीडिया वीडियो डाउनलोड नहीं करता और प्रतिबंधों को बायपास नहीं करता।",saved:"सेव हो गया।",bad:"सही लिंक डालें।",recognized:"पहचाना गया प्लेटफ़ॉर्म: ",official:"अनुमति होने पर आधिकारिक डाउनलोड/एक्सपोर्ट विकल्प उपयोग करें।",open:"प्लेटफ़ॉर्म खोलें",copy:"लिंक कॉपी करें",remove:"हटाएँ",favorite:"पसंदीदा",unfavorite:"पसंदीदा हटाएँ",unknown:"प्लेटफ़ॉर्म पहचाना नहीं गया।"}
+let db;
+let videos=[];
+let current="All";
+const request=indexedDB.open("VideoHubProV2",1);
+request.onupgradeneeded=e=>{
+ let d=e.target.result;
+ if(!d.objectStoreNames.contains("videos"))
+ d.createObjectStore("videos",{keyPath:"id",autoIncrement:true});
 };
-const fallback={...translations.en};
-const dbName="videohub-pro-db",storeName="videos";let db,items=[];
-function t(k){return (translations[$("language").value]||fallback)[k]||fallback[k]||k}
-function applyLang(){let x=translations[$("language").value]||fallback;document.documentElement.lang=$("language").value;$("tagline").textContent=x.tag;$("heroTitle").textContent=x.hero;$("heroText").textContent=x.heroText;$("tabLibrary").textContent=x.library;$("tabAdd").textContent=x.add;$("tabLinks").textContent=x.links;$("tabAbout").textContent=x.about;$("libraryTitle").textContent=x.videos;$("search").placeholder=x.search;$("empty").textContent=x.empty;$("addTitle").textContent=x.addTitle;$("addHelp").textContent=x.addHelp;$("storageNotice").textContent=x.tip;$("linksTitle").textContent=x.linkTitle;$("checkBtn").textContent=x.check;$("clearBtn").textContent=x.clear;$("linkHelp").textContent=x.linkHelp;$("aboutTitle").textContent=x.aboutTitle;$("aboutText").textContent=x.aboutText;$("legal").textContent=x.legal;render()}
-$("language").addEventListener("change",applyLang);
-function openDB(){return new Promise((resolve,reject)=>{let r=indexedDB.open(dbName,1);r.onupgradeneeded=()=>r.result.createObjectStore(storeName,{keyPath:"id",autoIncrement:true});r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}
-function tx(mode){return db.transaction(storeName,mode).objectStore(storeName)}
-async function load(){items=await new Promise((res,rej)=>{let r=tx("readonly").getAll();r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});render()}
-async function addFiles(files){for(const f of files){if(!f.type.startsWith("video/"))continue;await new Promise((res,rej)=>{let r=tx("readwrite").add({name:f.name,type:f.type,size:f.size,blob:f,favorite:false,added:Date.now()});r.onsuccess=res;r.onerror=()=>rej(r.error)})}await load();alert(t("saved"))}
-function fmt(n){return n<1048576?(n/1024).toFixed(0)+" KB":(n/1048576).toFixed(1)+" MB"}
-function render(){let q=$("search").value.toLowerCase(),grid=$("videoGrid");grid.innerHTML="";let shown=items.filter(v=>v.name.toLowerCase().includes(q));if(!shown.length){grid.innerHTML='<div class="empty">'+t("empty")+'</div>';return}for(let v of shown){let card=document.createElement("article");card.className="video";let vid=document.createElement("video");vid.controls=true;vid.playsInline=true;vid.src=URL.createObjectURL(v.blob);let info=document.createElement("div");info.className="video-info";let name=document.createElement("div");name.className="video-title";name.textContent=v.name;let meta=document.createElement("div");meta.className="video-meta";meta.textContent=fmt(v.size)+(v.favorite?" • ★":"");let actions=document.createElement("div");actions.className="video-actions";let fav=document.createElement("button");fav.className="secondary";fav.textContent=v.favorite?t("unfavorite"):t("favorite");fav.onclick=async()=>{tx("readwrite").put({...v,favorite:!v.favorite});await load()};let del=document.createElement("button");del.className="secondary";del.textContent=t("remove");del.onclick=async()=>{if(confirm("Remove this video from this browser library?")){tx("readwrite").delete(v.id);await load()}};actions.append(fav,del);info.append(name,meta,actions);card.append(vid,info);grid.append(card)}}
-$("fileInput").addEventListener("change",e=>addFiles([...e.target.files]));
-$("search").addEventListener("input",render);
-document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));["library","add","links","about"].forEach(id=>$(id).classList.toggle("hidden",id!==b.dataset.tab))}));
-function platform(u){try{let h=new URL(u).hostname.toLowerCase().replace(/^www\./,"");if(h==="youtu.be"||h.endsWith("youtube.com"))return ["YouTube","https://www.youtube.com"];if(h.endsWith("facebook.com")||h==="fb.watch")return ["Facebook","https://www.facebook.com"];if(h.endsWith("instagram.com"))return ["Instagram","https://www.instagram.com"];if(h.endsWith("tiktok.com"))return ["TikTok","https://www.tiktok.com"];if(h==="x.com"||h.endsWith("twitter.com"))return ["X","https://x.com"];if(h.endsWith("vimeo.com"))return ["Vimeo","https://vimeo.com"];if(h.endsWith("dailymotion.com")||h==="dai.ly")return ["Dailymotion","https://www.dailymotion.com"]}catch(e){}return null}
-$("checkBtn").onclick=()=>{let raw=$("urlInput").value.trim(),r=$("linkResult");r.classList.remove("hidden");let p=platform(raw);if(!p){r.textContent=raw?t("unknown"):t("bad");return}let safe;try{safe=new URL(raw).href}catch(e){r.textContent=t("bad");return}r.innerHTML="";let strong=document.createElement("strong");strong.textContent=t("recognized")+p[0];let para=document.createElement("p");para.textContent=t("official");let row=document.createElement("div");row.className="row";let open=document.createElement("button");open.textContent=t("open");open.onclick=()=>window.open(p[1],"_blank","noopener");let copy=document.createElement("button");copy.className="secondary";copy.textContent=t("copy");copy.onclick=()=>navigator.clipboard?.writeText(safe);row.append(open,copy);r.append(strong,para,row)};
-$("clearBtn").onclick=()=>{$("urlInput").value="";$("linkResult").classList.add("hidden")};
-(async()=>{try{db=await openDB();await load()}catch(e){$("empty").textContent="Local video storage is unavailable in this browser."}if("serviceWorker"in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{});applyLang()})();
+request.onsuccess=e=>{
+ db=e.target.result;
+ loadVideos();
+};
+request.onerror=()=>alert("Storage could not be opened. Please reload the app.");
+
+function loadVideos(){
+ const tx=db.transaction("videos","readonly");
+ tx.objectStore("videos").getAll().onsuccess=e=>{
+ videos=e.target.result;
+ render();
+ };
+}
+function addVideos(event){
+ const files=[...event.target.files];
+ if(!files.length)return;
+ const tx=db.transaction("videos","readwrite");
+ files.forEach(file=>{
+  if(!file.type.startsWith("video/"))return;
+  tx.objectStore("videos").add({
+   name:file.name,
+   file:file,
+   favorite:false,
+   date:Date.now()
+  });
+ });
+ tx.oncomplete=()=>{
+  event.target.value="";
+  loadVideos();
+  alert("Videos added to your library!");
+ };
+}
+function render(){
+ const box=document.getElementById("library");
+ box.innerHTML="";
+ let q=document.getElementById("search").value.toLowerCase();
+ let list=videos.filter(v=>v.name.toLowerCase().includes(q));
+ if(current==="Favorites")list=list.filter(v=>v.favorite);
+ if(current==="Recent")list=list.sort((a,b)=>b.date-a.date).slice(0,10);
+ document.getElementById("count").textContent=list.length+" videos";
+ if(!list.length){
+  box.innerHTML='<div id="empty">🎬<h3>No videos found</h3><p>Add a video from your phone to get started.</p></div>';
+  return;
+ }
+ list.forEach(v=>{
+  let url=URL.createObjectURL(v.file);
+  let card=document.createElement("div");
+  card.className="video";
+  let player=document.createElement("video");
+  player.controls=true;
+  player.preload="metadata";
+  player.src=url;
+  let title=document.createElement("h3");
+  title.textContent=v.name;
+  let actions=document.createElement("div");
+  actions.className="video-actions";
+  let fav=document.createElement("button");
+  fav.className="secondary";
+  fav.textContent=v.favorite?"♥ Favorite":"♡ Favorite";
+  fav.onclick=()=>updateVideo(v.id,{favorite:!v.favorite});
+  let del=document.createElement("button");
+  del.className="danger";
+  del.textContent="Remove";
+  del.onclick=()=>removeVideo(v.id);
+  actions.append(fav,del);
+  card.append(player,title,actions);
+  box.append(card);
+ });
+}
+function updateVideo(id,changes){
+ const tx=db.transaction("videos","readwrite");
+ const store=tx.objectStore("videos");
+ const req=store.get(id);
+ req.onsuccess=()=>{
+  Object.assign(req.result,changes);
+  store.put(req.result);
+ };
+ tx.oncomplete=loadVideos;
+}
+function removeVideo(id){
+ if(!confirm("Remove this video from your library?"))return;
+ const tx=db.transaction("videos","readwrite");
+ tx.objectStore("videos").delete(id);
+ tx.oncomplete=loadVideos;
+}
+function category(name,button){
+ current=name;
+ document.querySelectorAll(".chip").forEach(b=>b.classList.remove("active"));
+ button.classList.add("active");
+ render();
+}
+function checkLink(){
+ const value=document.getElementById("link").value.trim();
+ const result=document.getElementById("linkResult");
+ if(!value){result.textContent="Please paste a link first.";return;}
+ let url;
+ try{url=new URL(value)}catch(e){
+  result.textContent="Please enter a valid web link.";return;
+ }
+ if(!["http:","https:"].includes(url.protocol)){
+  result.textContent="Only HTTP or HTTPS links are supported.";return;
+ }
+ const host=url.hostname.toLowerCase().replace(/^www\./,"");
+ let platform="Direct or other website";
+ if(host.includes("youtube.com")||host==="youtu.be")platform="YouTube";
+ else if(host==="facebook.com"||host.endsWith(".facebook.com"))platform="Facebook";
+ else if(host==="instagram.com"||host.endsWith(".instagram.com"))platform="Instagram";
+ else if(host==="tiktok.com"||host.endsWith(".tiktok.com"))platform="TikTok";
+ else if(host==="vimeo.com"||host.endsWith(".vimeo.com"))platform="Vimeo";
+ else if(host==="x.com"||host==="twitter.com")platform="X";
+ result.textContent="Recognized: "+platform+". You can open the link below. Download only when the owner or platform permits it.";
+ let open=document.createElement("button");
+ open.textContent="Open Link";
+ open.style.marginTop="10px";
+ open.onclick=()=>window.open(url.href,"_blank","noopener");
+ result.appendChild(document.createElement("br"));
+ result.appendChild(open);
+}
+function toggleTheme(){
+ document.body.classList.toggle("light");
+ localStorage.setItem("vh-theme",document.body.classList.contains("light")?"light":"dark");
+}
+if(localStorage.getItem("vh-theme")==="light")document.body.classList.add("light");
 </script>
 </body>
 </html>
