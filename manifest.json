@@ -1,32 +1,25 @@
+
 {
   "id": "./",
   "name": "VideoHub Pro",
   "short_name": "VideoHub",
-  "description": "Your personal video library and media player.",
+  "description": "Personal video library and media player",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#10111b",
   "theme_color": "#10111b",
-  "categories": [
-    "video",
-    "entertainment",
-    "utilities"
-  ],
   "icons": [
     {
       "src": "./icon-192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     },
     {
       "src": "./icon-512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     }
   ]
 }
-<link rel="manifest" href="./manifest.json">
